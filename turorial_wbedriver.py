@@ -9,7 +9,7 @@ import pymssql
 import re
 from selenium.common.exceptions import NoSuchElementException
 
-path = "/chromedriver_mac_arm64/chromedriver"
+path = "/Users/woody/Documents/python/practise_2/chromedriver_mac_arm64/chromedriver"
 service = Service(path)
 driver = webdriver.Chrome(service=service)
 
@@ -17,7 +17,7 @@ driver = webdriver.Chrome(service=service)
 data_list = []
 
 # 連接到 SQL Server 資料庫
-conn = pymssql.connect(server='localhost', user='', password='', database='')
+conn = pymssql.connect(server='localhost', user='sa', password='Passw0rd', database='Movie')
 
 # 創建游標物件
 cursor = conn.cursor()
@@ -31,7 +31,8 @@ results = cursor.fetchall()
 # 將待查詢統編結果附加到列表
 for row in results:
     # 移除括號並只保留數字部分
-    num = int(row[0].strip('()'))
+    #num = int(row[0].strip('()'))
+    num = row[0].replace('(', '').replace(')', '')
 
     # 確保統一編號的領導0不被去除
     統一編號 = str(num).zfill(8)
@@ -58,6 +59,7 @@ datatypeclick2.click()
 datatypeclick3.click()
 datatypeclick4.click()
 
+count = 0
 #開始查詢
 for i in data_list:
     search = driver.find_element(By.NAME, "qryCond")
