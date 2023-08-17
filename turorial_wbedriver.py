@@ -9,7 +9,7 @@ import pymssql
 import re
 from selenium.common.exceptions import NoSuchElementException
 
-path = "/Users//Documents/python/practise_2/chromedriver_mac_arm64/chromedriver"
+path = "/Users/woody/Documents/python/practise_2/chromedriver_mac_arm64_116/chromedriver"
 service = Service(path)
 driver = webdriver.Chrome(service=service)
 
@@ -17,7 +17,7 @@ driver = webdriver.Chrome(service=service)
 data_list = []
 
 # 連接到 SQL Server 資料庫
-conn = pymssql.connect(server='localhost', user='sa', password='', database='')
+conn = pymssql.connect(server='localhost', user='sa', password='Passw0rd', database='companydetails')
 
 # 創建游標物件
 cursor = conn.cursor()
